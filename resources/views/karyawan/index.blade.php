@@ -20,7 +20,7 @@
                     @endif
                     <form action="{{ route('karyawan.search') }}" method="GET" class="form-inline mb-3">
                         <input type="text" name="query" class="form-control mr-2" placeholder="Cari karyawan...">
-                        <button type="submit" class="btn btn-primary">Cari</button>
+                        <button type="submit" class="btn btn-primary my-1">Cari</button>
                     </form>
                     <table class="table table-bordered table-striped">
                         <thead>
@@ -42,6 +42,7 @@
                                 <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $row->tanggal_lahir)->format('d/m/Y') }}</td>
                                 <td>{{ $row->jabatan->nama }}</td>
                                 <td>
+                                    <a href="{{ route('karyawan.show', $row->id) }}" class="btn btn-success btn-sm">Detail</a>
                                     <a href="{{ route('karyawan.edit', $row) }}" class="btn btn-warning btn-sm">Edit</a>
                                     <form action="{{ route('karyawan.destroy', $row) }}" method="POST" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
                                         @csrf

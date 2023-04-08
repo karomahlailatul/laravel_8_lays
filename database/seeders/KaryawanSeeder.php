@@ -14,10 +14,8 @@ class KaryawanSeeder extends Seeder
      */
     public function run()
     {
-        // Ambil data jabatan dari tabel "jabatan"
         $jabatan = DB::table('jabatans')->get();
 
-        // Buat daftar karyawan yang akan diisi ke dalam tabel "karyawan"
         $karyawan = [
             [
                 'nama' => 'John Doe',
@@ -39,7 +37,6 @@ class KaryawanSeeder extends Seeder
             ],
         ];
 
-        // Looping untuk memasukkan data ke dalam tabel "karyawan"
         foreach ($karyawan as $k) {
             DB::table('karyawans')->insert($k);
         }

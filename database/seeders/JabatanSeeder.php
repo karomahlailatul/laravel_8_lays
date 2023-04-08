@@ -20,7 +20,6 @@ class JabatanSeeder extends Seeder
             ['nama' => 'Staff'],
         ];
 
-        // Looping untuk memasukkan data ke dalam tabel "jabatan"
         foreach ($jabatan as $j) {
             DB::table('jabatans')->insert($j);
         }

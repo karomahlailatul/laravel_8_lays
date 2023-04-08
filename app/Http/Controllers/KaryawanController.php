@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Jabatan;
@@ -10,20 +11,10 @@ class KaryawanController extends Controller
 
     public function index(Request $request)
     {
-        // $karyawan = Karyawan::with('jabatan')->when($request->q, function ($query) use ($request) {
-        //     $query->where('nama', 'LIKE', '%' . $request->q . '%')
-        //         ->orWhereHas('jabatan', function ($query) use ($request) {
-        //             $query->where('nama', 'LIKE', '%' . $request->q . '%');
-        //         });
-        // })->get();
-
-        // return view('karyawan.index', compact('karyawan'));
-
         $karyawan = Karyawan::with('jabatan')->get();
         return view('karyawan.index', compact('karyawan'));
-
     }
-    
+
     public function create()
     {
         $jabatan = Jabatan::all();
@@ -36,20 +27,22 @@ class KaryawanController extends Controller
             'nama' => 'required',
             'alamat' => 'required',
             'tanggal_lahir' => 'required',
-            'jabatan_id' => 'required|exists:jabatan,id'
+            'jabatan_id' => 'required|exists:jabatans,id'
         ]);
 
         Karyawan::create($validatedData);
-        return redirect()->route('karyawan.index')->with('success','Created Successfully.');
+        return redirect()->route('karyawan.index')->with('success', 'Created Successfully.');
     }
 
     public function show($id)
     {
-        return view('karyawan.show',compact('karyawan'));
+        $karyawan = Karyawan::findOrFail($id);
+        return view('karyawan.show', compact('karyawan'));
     }
 
     public function edit($id)
     {
+        $karyawan = Karyawan::findOrFail($id);
         $jabatan = Jabatan::all();
         return view('karyawan.edit', compact('karyawan', 'jabatan'));
     }
@@ -84,9 +77,9 @@ class KaryawanController extends Controller
         $query = $request->input('query');
 
         $karyawan = Karyawan::where('nama', 'like', "%$query%")
-                    ->orWhereHas('jabatan', function($q) use($query) {
-                        $q->where('nama', 'like', "%$query%");
-                    })->get();
+            ->orWhereHas('jabatan', function ($q) use ($query) {
+                $q->where('nama', 'like', "%$query%");
+            })->get();
 
         return view('karyawan.index', compact('karyawan'));
     }
