@@ -13,7 +13,7 @@ class CreateKaryawanTable extends Migration
      */
     public function up()
     {   
-        Schema::create('karyawan', function (Blueprint $table) {
+        Schema::create('karyawans', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
             $table->string('alamat');
@@ -23,7 +23,7 @@ class CreateKaryawanTable extends Migration
         
             $table->foreign('jabatan_id')
                   ->references('id')
-                  ->on('jabatan')
+                  ->on('jabatans')
                   ->onDelete('cascade');
         });
     }
@@ -35,6 +35,6 @@ class CreateKaryawanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('karyawan');
+        Schema::dropIfExists('karyawans');
     }
 }

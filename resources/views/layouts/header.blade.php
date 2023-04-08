@@ -8,6 +8,7 @@
             <li class="nav-item"><a href="{{ url('/') }}" class="nav-link {{ request()->is('/') ? 'active' : '' }}" aria-current="page">Home</a></li>
             <li class="nav-item"><a href="{{ url('/about') }}" class="nav-link {{ request()->is('about') ? 'active' : '' }}">About</a></li>
             <li class="nav-item"><a href="{{ url('/contact') }}" class="nav-link btn btn-outline-primary {{ request()->is('contact') ? 'active' : '' }}">Contact</a></li>
+            <li class="nav-item"><a href="{{ url('/crud') }}" class="nav-link btn btn-outline-primary {{ request()->is('contact') ? 'active' : '' }}">CRUD</a></li>
         </ul>
     </header>
 </div>
