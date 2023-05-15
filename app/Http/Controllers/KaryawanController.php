@@ -53,7 +53,7 @@ class KaryawanController extends Controller
             'nama' => 'required',
             'alamat' => 'required',
             'tanggal_lahir' => 'required',
-            'jabatan_id' => 'required|exists:jabatan,id'
+            'jabatan_id' => 'required|exists:jabatans,id'
         ]);
 
         $karyawan->update($validatedData);
